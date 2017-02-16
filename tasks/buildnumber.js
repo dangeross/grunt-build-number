@@ -21,7 +21,8 @@ module.exports = function( grunt ){
 
     // Merge task-specific and/or target-specific options with these defaults.
     var options = this.options( {
-      field : 'build'
+      field : 'build',
+      padding: 2
     } );
 
     var files = this.files;
@@ -46,7 +47,7 @@ module.exports = function( grunt ){
             buildNum = 1;
           }
           meta[options.field] = buildNum.toString();
-          grunt.file.write( filepath, JSON.stringify( meta, null, 2 ) );
+          grunt.file.write( filepath, JSON.stringify( meta, null, options.padding ) );
           grunt.log.oklns( 'Build number set to "' + buildNum + '" in "' + filename + '".' );
         }else{
           grunt.fail.fatal( "file(s) not found: " + file.orig.src );
